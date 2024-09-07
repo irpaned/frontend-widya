@@ -7,10 +7,5 @@ export const RegisterSchema = z.object({
 
   fullName: z.string().min(3),
 
-  userName: z
-    .string()
-    .min(4)
-    .refine((value) => !/\s/.test(value), {
-      message: "Username must not contain spaces",
-    }),
+  sex: z.string(),
 });

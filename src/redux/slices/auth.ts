@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface User {
   id: number;
-  userName: string;
+  sex: string;
   fullName: string;
   email: string;
   photoProfile: string;
+  coverImage: string;
   bio: string;
 }
 
@@ -19,8 +20,9 @@ const initialState: AuthState = {
     id: 0,
     fullName: "",
     email: "",
-    userName: "",
+    sex: "",
     photoProfile: "",
+    coverImage: "",
     bio: "",
   },
 };

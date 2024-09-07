@@ -1,10 +1,13 @@
-import { Container } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import { NavBar } from "../navigation/Navbar";
 
 export function MainLayout() {
   return (
-    <Container className="flex items-center justify-center bg-background p-10">
-      <Outlet />
-    </Container>
+    <div className="flex flex-col min-h-[100dvh]">
+      <NavBar />
+      <main className="flex items-center justify-center p-10">
+        <Outlet />
+      </main>
+    </div>
   );
 }

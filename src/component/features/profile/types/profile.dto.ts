@@ -1,6 +1,6 @@
 export type ProfileDto = {
   fullName: string;
-  username: string;
+  sex: string;
   bio: string;
   photoProfile: string;
   coverImage: string;

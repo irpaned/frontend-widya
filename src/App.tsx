@@ -1,13 +1,14 @@
+import { useQuery } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { MainLayout } from "./component/layouts/MainLayout";
+import { axiosInstance } from "./libs/axios";
+import ForgotPage from "./pages/auth/ForgotPage";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
-import ForgotPage from "./pages/auth/ForgotPage";
-import { axiosInstance } from "./libs/axios";
-import { useQuery } from "@tanstack/react-query";
-import Profile from "./component/features/profile/components/Profile";
-import { MainLayout } from "./component/layouts/MainLayout";
-import { useDispatch } from "react-redux";
 import { SET_USER } from "./redux/slices/auth";
+import { ProfilePage } from "./pages/profilePage";
+import { ProductPage } from "./pages/productPage";
 function App() {
   const dispatch = useDispatch();
   const { data: authUser } = useQuery({
@@ -20,7 +21,6 @@ function App() {
             ...response.data,
           })
         );
-        console.log("TEEESTTT", response.data);
         return response.data;
       } catch {
         throw new Error("Unauthenticated");
@@ -41,7 +41,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route element={<PrivateRoute />}>
-            <Route index element={<Profile />} />
+            <Route index element={<ProfilePage />} />
+            <Route path="product" element={<ProductPage />} />
           </Route>
         </Route>
 
