@@ -18,13 +18,12 @@ function EmailConfirmationDialog({
   const navigate = useNavigate();
   const handleClose = () => {
     onClose();
-    navigate("/login"); // Navigate to '/login' when the close button is clicked
+    navigate("/login");
   };
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogContent className="p-6 relative">
-        {/* Close Button */}
         <IconButton
           onClick={handleClose}
           className="absolute right-2"

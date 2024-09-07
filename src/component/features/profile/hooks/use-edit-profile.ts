@@ -58,7 +58,6 @@ export const useEditProfile = (id: number) => {
       }
 
       mutateAsync(formData);
-      // await mutateAsync(data);
       refetch();
     } catch (error) {
       console.log(error);

@@ -14,7 +14,6 @@ export interface AuthState {
   user: User;
 }
 
-// DATA AWALNYA KITA BIKIN KOSONG/ ATAU SECARA DEFAULT KOSONG
 const initialState: AuthState = {
   user: {
     id: 0,
