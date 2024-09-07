@@ -89,12 +89,14 @@ export function EditProfile() {
             label="Bio"
           />
 
+          <Typography>Photo Profile</Typography>
           <TextField
             {...register("photoProfile")}
             className="w-full"
             type="file"
           />
 
+          <Typography>Cover Image</Typography>
           <TextField
             {...register("coverImage")}
             className="w-full"

@@ -56,6 +56,7 @@ export function EditProduct({ product }: ProductCardProps) {
           />
           <Typography color={"red"}>{errors.price?.message}</Typography>
 
+          <Typography>Photo Product</Typography>
           <TextField
             {...register("photoProduct")}
             className="w-full"
