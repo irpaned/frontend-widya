@@ -10,7 +10,6 @@ import { z } from "zod";
 import { VerifyEmailDto } from "../dto/VerifyEmailDto";
 import { axiosInstance } from "../../../../libs/axios";
 import { PrimaryButton } from "../../../ui/button/PrimatyButton";
-// import { Link } from "react-router-dom";
 
 export function VerifyResetForm() {
   const navigate = useNavigate();

@@ -1,10 +1,10 @@
 import React from "react";
-import { api } from "../../../libraries/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ResetPassword } from "../types/reset-password";
 import { ResetPasswordSchema } from "../validators/reset-password";
+import { axiosInstance } from "../../../../libs/axios";
 
 export const useResetPasswordForm = () => {
   const [show, setShow] = React.useState(false);
@@ -22,11 +22,10 @@ export const useResetPasswordForm = () => {
 
   const onSubmit: SubmitHandler<ResetPassword> = async (data) => {
     try {
-      const response = await api.patch("/auth/resetpassword", data);
+      const response = await axiosInstance.patch("/auth/resetpassword", data);
 
       const token = response.data.token;
 
-      // cara bacanya apabila betulan token maka akan dimasukkan ke localstorage kita 1:21:05 day 8
       if (token) {
         localStorage.setItem("token", token);
       }
