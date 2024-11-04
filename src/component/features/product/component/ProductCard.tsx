@@ -9,6 +9,8 @@ import { useDeleteThread } from "../hooks/use-delete-product";
 import { useState } from "react";
 import { EditProduct } from "./modal/EditProduct";
 import { Modal } from "@mui/material";
+import { useCreateTransaction } from "../hooks/use-payment";
+import { numberToRupiah } from "../../../../utils/numberToRupiah";
 
 interface ProductCardProps {
   product: ProductEntity;
@@ -20,6 +22,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [isHovered, setIsHovered] = useState(false);
+  const { onSubmit } = useCreateTransaction(product.id);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -38,6 +41,17 @@ export function ProductCard({ product }: ProductCardProps) {
   const handleMouseOut = () => {
     setIsHover(false);
   };
+
+  const [isHoverBuy, setIsHoverBuy] = useState(false);
+
+  const handleMouseInBuy = () => {
+    setIsHoverBuy(true);
+  };
+
+  const handleMouseOutBuy = () => {
+    setIsHoverBuy(false);
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -60,49 +74,74 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.productName}
         </Typography>
         <Typography sx={{ color: "text.secondary", fontSize: "18px" }}>
-          $ {product.price}
+          {numberToRupiah(product.price)}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={{
-            backgroundColor: isHovered ? "white" : "#1B5EA0",
-            color: isHovered ? "#1B5EA0" : "white",
-            border: isHovered ? "2px solid #1B5EA0" : "2px solid white",
-            padding: "3px 15px 3px 15px",
-            fontWeight: "bold",
-            transition: "all 0.3s ease",
-            width: "100%",
-          }}
-          onClick={handleOpen}
-          size="small"
-        >
-          Edit
-        </Button>
-        <Modal open={open} onClose={handleClose}>
-          <EditProduct product={product} />
-        </Modal>
-        <Button
-          onMouseEnter={handleMouseIn}
-          onMouseLeave={handleMouseOut}
-          style={{
-            backgroundColor: isHover ? "white" : "#1B5EA0",
-            color: isHover ? "#1B5EA0" : "white",
-            border: isHover ? "2px solid #1B5EA0" : "2px solid white",
-            padding: "3px 15px 3px 15px",
-            fontWeight: "bold",
-            transition: "all 0.3s ease",
-            width: "100%",
-          }}
-          onClick={() => {
-            onDelete();
-          }}
-          size="small"
-        >
-          Delete
-        </Button>
+        <div className="w-full flex flex-col">
+          <div className="w-full flex justify-between">
+            <Button
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                backgroundColor: isHovered ? "white" : "#1B5EA0",
+                color: isHovered ? "#1B5EA0" : "white",
+                border: isHovered ? "2px solid #1B5EA0" : "2px solid white",
+                padding: "3px 15px 3px 15px",
+                fontWeight: "bold",
+                transition: "all 0.3s ease",
+                width: "100%",
+              }}
+              onClick={handleOpen}
+              size="small"
+            >
+              Edit
+            </Button>
+            <Modal open={open} onClose={handleClose}>
+              <EditProduct product={product} />
+            </Modal>
+            <Button
+              onMouseEnter={handleMouseIn}
+              onMouseLeave={handleMouseOut}
+              style={{
+                backgroundColor: isHover ? "white" : "#1B5EA0",
+                color: isHover ? "#1B5EA0" : "white",
+                border: isHover ? "2px solid #1B5EA0" : "2px solid white",
+                padding: "3px 15px 3px 15px",
+                fontWeight: "bold",
+                transition: "all 0.3s ease",
+                width: "100%",
+              }}
+              onClick={() => {
+                onDelete();
+              }}
+              size="small"
+            >
+              Delete
+            </Button>
+          </div>
+          <Button
+            onMouseEnter={handleMouseInBuy}
+            onMouseLeave={handleMouseOutBuy}
+            style={{
+              backgroundColor: isHoverBuy ? "white" : "#1B5EA0",
+              color: isHoverBuy ? "#1B5EA0" : "white",
+              border: isHoverBuy ? "2px solid #1B5EA0" : "2px solid white",
+              padding: "3px 15px 3px 15px",
+              fontWeight: "bold",
+              transition: "all 0.3s ease",
+              width: "100%",
+            }}
+            onClick={() => {
+              onSubmit({
+                productId: product.id,
+              });
+            }}
+            size="small"
+          >
+            Buy Now
+          </Button>
+        </div>
       </CardActions>
     </Card>
   );

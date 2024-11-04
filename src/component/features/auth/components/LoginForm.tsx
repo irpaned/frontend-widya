@@ -60,7 +60,7 @@ export function LoginForm() {
         </Link>
 
         <PrimaryButton
-          title="Submit"
+          title="Login"
           color="white"
           fw="bold"
           fs="15px"
@@ -68,13 +68,6 @@ export function LoginForm() {
           className="w-full"
           isLoading={isPending}
         />
-
-        <Typography>
-          Don't have an account?{" "}
-          <Link to="/auth/register" className="text-blue-500">
-            Sign up
-          </Link>
-        </Typography>
       </form>
     </>
   );

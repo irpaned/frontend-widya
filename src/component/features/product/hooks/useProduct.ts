@@ -15,7 +15,7 @@ export const useProduct = () => {
       },
     });
     console.log("first", response.data);
-    return response.data;
+    return response.data.reverse();
   }
 
   return {

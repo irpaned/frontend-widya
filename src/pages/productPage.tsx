@@ -1,7 +1,7 @@
 import { Button, Modal } from "@mui/material";
 import { ProductCard } from "../component/features/product/component/ProductCard";
 import { useProduct } from "../component/features/product/hooks/useProduct";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddProduct } from "../component/features/product/component/modal/AddProduct";
 
 export function ProductPage() {
@@ -14,6 +14,23 @@ export function ProductPage() {
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
+
+  // ini untuk memunculkan snap dari midtrans
+  useEffect(() => {
+    const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
+
+    const scriptTag = document.createElement("script");
+    scriptTag.src = midtransScriptUrl;
+
+    const myMidtransClientKey = import.meta.env.VITE_MIDTRANS_CLIENT_KEY;
+    scriptTag.setAttribute("data-client-key", myMidtransClientKey);
+
+    document.body.appendChild(scriptTag);
+
+    return () => {
+      document.body.removeChild(scriptTag);
+    };
+  }, []);
 
   const handleMouseLeave = () => {
     setIsHovered(false);

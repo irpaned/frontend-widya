@@ -76,10 +76,10 @@ export default function Profile() {
           variant="body2"
           sx={{ color: "text.secondary", minWidth: 800 }}
         >
-          {currentUser.email} | {currentUser.sex}
+          {currentUser.email} {currentUser.sex ? " | " + currentUser.sex : ""}
         </Typography>
         <Typography variant="body2" sx={{ width: "full" }}>
-          {currentUser.bio}
+          {currentUser.bio || "Hi there, I am using Matador"}
         </Typography>
       </CardContent>
     </Card>
