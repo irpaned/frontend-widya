@@ -20,7 +20,6 @@ export const useHandleGoogleToken = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
-    console.log("TOKEN :", token);
     if (token) {
       mutate(token);
     } else {

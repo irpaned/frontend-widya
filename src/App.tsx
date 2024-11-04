@@ -10,7 +10,6 @@ import RegisterPage from "./pages/auth/RegisterPage";
 import { ProductPage } from "./pages/productPage";
 import { ProfilePage } from "./pages/profilePage";
 import { SET_USER } from "./redux/slices/auth";
-import GoogleLoginButton from "./component/features/auth/components/LoginGoogle";
 import LoginCallbackHandler from "./pages/auth/LoginCallbackHandler";
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +53,6 @@ function App() {
           <Route path="auth/register" element={<RegisterPage />} />
           <Route path="forgot-password" element={<ForgotPage />} />
         </Route>
-        <Route path="/login" element={<GoogleLoginButton />} />
         <Route
           path="/auth/google/callback"
           element={<LoginCallbackHandler />}
