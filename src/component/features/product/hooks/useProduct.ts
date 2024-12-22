@@ -9,12 +9,11 @@ export const useProduct = () => {
   });
 
   async function getProducts() {
-    const response = await axiosInstance.get("/products", {
+    const response = await axiosInstance.get("/product", {
       headers: {
         Authorization: `Bearer ${sessionStorage.token}`,
       },
     });
-    console.log("first", response.data);
     return response.data.reverse();
   }
 

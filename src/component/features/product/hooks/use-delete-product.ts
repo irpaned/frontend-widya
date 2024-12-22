@@ -22,7 +22,7 @@ export const useDeleteThread = (id: number) => {
     try {
       await mutateAsync();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

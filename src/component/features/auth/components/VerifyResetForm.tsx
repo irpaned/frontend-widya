@@ -1,78 +1,45 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import { useForm } from "@tanstack/react-form";
-import { useMutation } from "@tanstack/react-query";
-import { zodValidator } from "@tanstack/zod-form-adapter";
-import { AxiosError } from "axios";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { z } from "zod";
-import { VerifyEmailDto } from "../dto/VerifyEmailDto";
-import { axiosInstance } from "../../../../libs/axios";
 import { PrimaryButton } from "../../../ui/button/PrimatyButton";
+import { useResetPasswordForm } from "../hook/use-reset-password";
 
 export function VerifyResetForm() {
-  const navigate = useNavigate();
-  const { mutateAsync, isPending } = useMutation({
-    mutationFn: async (data: VerifyEmailDto) => {
-      const res = await axiosInstance.patch("/auth/verify-email", data);
-
-      return res.data;
-    },
-    onSuccess: () => {
-      toast.success("We’ve already sent you an email");
-    },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        toast.error(error.response?.data.message);
-      }
-    },
-  });
-
-  const form = useForm({
-    defaultValues: {
-      email: "",
-    },
-    onSubmit: async ({ value }) => {
-      mutateAsync(value);
-      navigate("/login");
-    },
-  });
+  const { register, handleSubmit, errors, onSubmit, isPending } =
+    useResetPasswordForm();
   return (
     <>
-      <form
-        className="flex flex-col gap-4"
-        onSubmit={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          form.handleSubmit();
-        }}
-      >
-        <form.Field
-          validatorAdapter={zodValidator()}
-          validators={{
-            onChange: z.string().email("Must be a valid email"),
-          }}
-          name="email"
-          children={(field) => (
-            <div>
-              <TextField
-                className="w-full"
-                id="outlined-basic"
-                label="Email"
-                variant="outlined"
-                type="email"
-                value={field.state.value}
-                onChange={(e) => field.handleChange(e.target.value)}
-              />
-              {field.state.meta.errors && (
-                <div className="text-red-500 text-sm">
-                  {field.state.meta.errors}
-                </div>
-              )}
-            </div>
-          )}
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          {...register("email")}
+          className="w-full"
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          type="email"
         />
+        <Typography color={"red"}>{errors.email?.message}</Typography>
+
+        <TextField
+          {...register("password")}
+          className="w-full"
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="password"
+          placeholder="Enter your password"
+        />
+        <Typography color={"red"}>{errors.password?.message}</Typography>
+
+        <TextField
+          {...register("confirmPassword")}
+          className="w-full"
+          id="confirm-password"
+          label="Confirm Password"
+          variant="outlined"
+          type="password"
+          placeholder="Confirm your password"
+        />
+        <Typography color={"red"}>{errors.confirmPassword?.message}</Typography>
 
         {isPending ? (
           <Button disabled>
@@ -82,8 +49,8 @@ export function VerifyResetForm() {
         ) : (
           <PrimaryButton
             title="Submit"
+            buttonType="submit"
             color="white"
-            onClick={form.handleSubmit}
             className="w-full"
           />
         )}

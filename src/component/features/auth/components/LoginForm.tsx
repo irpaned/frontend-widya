@@ -55,7 +55,10 @@ export function LoginForm() {
         />
         <Typography color={"red"}>{errors.password?.message}</Typography>
 
-        <Link to="/forgot-password" className="text-blue-500 flex justify-end">
+        <Link
+          to="/auth/forgot-password"
+          className="text-blue-500 flex justify-end"
+        >
           Forgot password?
         </Link>
 

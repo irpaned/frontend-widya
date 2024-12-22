@@ -8,7 +8,7 @@ interface User {
   photoProfile: string;
   coverImage: string;
   bio: string;
-  isVerified: boolean;
+  isLogin: boolean;
 }
 
 export interface AuthState {
@@ -24,7 +24,7 @@ const initialState: AuthState = {
     photoProfile: "",
     coverImage: "",
     bio: "",
-    isVerified: false,
+    isLogin: false,
   },
 };
 

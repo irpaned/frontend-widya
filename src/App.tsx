@@ -4,13 +4,15 @@ import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { MainLayout } from "./component/layouts/MainLayout";
 import { NavBar } from "./component/navigation/NavBar";
 import { axiosInstance } from "./libs/axios";
-import ForgotPage from "./pages/auth/ForgotPage";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import { ProductPage } from "./pages/productPage";
 import { ProfilePage } from "./pages/profilePage";
 import { SET_USER } from "./redux/slices/auth";
-import LoginCallbackHandler from "./pages/auth/LoginCallbackHandler";
+import { AuthLayout } from "./component/layouts/AuthLayout";
+import ResetPasswordPage from "./pages/auth/ForgotPage";
+import HomePage from "./pages/HomePage";
+import { DetailProduct } from "./pages/DetailProduct";
 function App() {
   const dispatch = useDispatch();
   const { data: authUser } = useQuery({
@@ -18,12 +20,13 @@ function App() {
     queryFn: async () => {
       try {
         const response = await axiosInstance.get("/auth/check");
+        console.log("AAAAAAAA", response);
         dispatch(
           SET_USER({
             ...response.data,
+            isLogin: true,
           })
         );
-        console.log("CEKK", response.data);
         return response.data;
       } catch {
         throw new Error("Unauthenticated");
@@ -43,20 +46,25 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="product/:id" element={<DetailProduct />} />
           <Route element={<PrivateRoute />}>
-            <Route index element={<ProfilePage />} />
+            <Route path="profile" element={<ProfilePage />} />
             <Route path="product" element={<ProductPage />} />
           </Route>
         </Route>
-        <Route element={<AuthRoute />}>
-          <Route path="auth/login" element={<LoginPage />} />
-          <Route path="auth/register" element={<RegisterPage />} />
-          <Route path="forgot-password" element={<ForgotPage />} />
+        <Route path="auth/login" element={<AuthLayout />}>
+          <Route element={<AuthRoute />}>
+            <Route index element={<LoginPage />} />
+          </Route>
         </Route>
-        <Route
-          path="/auth/google/callback"
-          element={<LoginCallbackHandler />}
-        />
+        <Route path="auth/register" element={<AuthLayout />}>
+          <Route index element={<RegisterPage />} />
+        </Route>
+        <Route path="auth/forgot-password" element={<AuthLayout />}>
+          <Route index element={<ResetPasswordPage />} />
+        </Route>
+
         <Route path="test" element={<NavBar />} />
       </Routes>
     </>

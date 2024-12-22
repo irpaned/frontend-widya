@@ -23,8 +23,6 @@ export const useCreateTransaction = (id: number) => {
     TransactionDto
   >({
     mutationFn: async (transactionData) => {
-      console.log("MASUKKK2", id);
-
       const response = await axiosInstance.post(
         "/create-transaction/" + id,
         transactionData,
@@ -35,7 +33,6 @@ export const useCreateTransaction = (id: number) => {
         }
       );
 
-      console.log("MASUKKKBBBBBBBB", response.data.token);
       return response.data;
     },
     onSuccess: (data) => {
@@ -43,7 +40,7 @@ export const useCreateTransaction = (id: number) => {
         if (window.snap) {
           window.snap.pay(data.token);
         } else {
-          console.log("gaada snap");
+          console.error("Error: snap.pay is not defined");
         }
       }
     },
@@ -55,11 +52,9 @@ export const useCreateTransaction = (id: number) => {
 
   const onSubmit: SubmitHandler<TransactionDto> = async (data) => {
     try {
-      console.log("MASUKKK1");
-
       await mutateAsync(data); // Mutasi data ke backend
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

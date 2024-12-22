@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../../libs/axios";
-import { RegisterSchema } from "../validators/register-form";
+import { RegisterSchema } from "../validators/auth";
 
 export const useRegisterForm = () => {
   const [show, setShow] = React.useState(false);
@@ -32,7 +32,7 @@ export const useRegisterForm = () => {
       }
       navigate("/auth/login");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

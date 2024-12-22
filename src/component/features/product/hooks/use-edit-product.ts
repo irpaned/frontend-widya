@@ -37,7 +37,7 @@ export const useEditProduct = (id: number) => {
 
       mutateAsync(formData);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

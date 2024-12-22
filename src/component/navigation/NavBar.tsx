@@ -11,13 +11,21 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import React from "react";
+import logo from "../../assets/image/logo.png";
+
+type NavBarProps = {
+  isAuthPage?: boolean;
+  isMainPage?: boolean;
+};
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-export function NavBar() {
+export function NavBar({
+  isAuthPage = false,
+  isMainPage = false,
+}: NavBarProps) {
   const queryClient = useQueryClient();
   const user = useSelector((state: RootState) => state.auth.user);
-  console.log("ASDAS", user);
 
   const navigate = useNavigate();
 
@@ -44,37 +52,42 @@ export function NavBar() {
   };
 
   return (
-    <header className="px-4 lg:px-6 h-[65px] flex justify-between items-center bg-[#1B5EA0]">
-      <nav className=" flex gap-4 sm:gap-6 items-center ">
-        <img
-          className="w-14"
-          src="https://res.cloudinary.com/dbgugbfil/image/upload/v1725683526/Matador/cbmeik1aiwbtyjkgnwd7.png"
-          alt="logo"
-        />
-        {user.isVerified ? (
+    <header className="px-4 lg:px-40 h-[70px] flex justify-between items-center bg-white">
+      <nav
+        className=" flex items-center "
+        style={{
+          gap: isMainPage ? "10px" : 0,
+        }}
+      >
+        <img className="w-[100px] mb-2" src={logo} alt="logo" />
+        {user.isLogin ? (
           <>
             <Link
               to="/"
-              className="text-sm font-bold text-white hover:underline underline-offset-4"
+              className="text-m font-bold text-black hover:underline underline-offset-4"
             >
-              Profile
+              PROFILE
             </Link>
             <Link
               to="product"
-              className="text-sm text-white font-bold hover:underline underline-offset-4"
+              className="text-m text-black font-bold hover:underline underline-offset-4"
             >
-              Product
+              PRODUCT
             </Link>
           </>
-        ) : null}
+        ) : (
+          <>
+            <p className="text-xl font-bold text-black">Netify</p>
+          </>
+        )}
       </nav>
       <div>
-        {user.isVerified ? (
+        {user.isLogin ? (
           <div className="flex justify-between">
             <Typography
               style={{
                 fontWeight: "bold",
-                color: "white",
+                color: "black",
                 marginTop: "8px",
                 marginRight: "10px",
               }}
@@ -123,12 +136,22 @@ export function NavBar() {
             </Menu>
           </div>
         ) : (
-          <Link
-            to="/auth/login"
-            className="text-sm text-white font-bold hover:underline underline-offset-4"
-          >
-            Log in
-          </Link>
+          <>
+            {isAuthPage ? (
+              <>
+                <Link className="text-m" to="#">
+                  Butuh bantuan?
+                </Link>
+              </>
+            ) : (
+              <Link
+                to="/auth/login"
+                className="text-m text-black font-bold hover:underline underline-offset-4"
+              >
+                Log in
+              </Link>
+            )}
+          </>
         )}
       </div>
     </header>

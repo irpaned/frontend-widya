@@ -1,11 +1,9 @@
 import { Button, Modal } from "@mui/material";
-import { ProductCard } from "../component/features/product/component/ProductCard";
-import { useProduct } from "../component/features/product/hooks/useProduct";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AddProduct } from "../component/features/product/component/modal/AddProduct";
+import ListProduct from "../component/features/product/component/ListProduct";
 
 export function ProductPage() {
-  const { products } = useProduct();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -15,30 +13,14 @@ export function ProductPage() {
     setIsHovered(true);
   };
 
-  // ini untuk memunculkan snap dari midtrans
-  useEffect(() => {
-    const midtransScriptUrl = "https://app.sandbox.midtrans.com/snap/snap.js";
-
-    const scriptTag = document.createElement("script");
-    scriptTag.src = midtransScriptUrl;
-
-    const myMidtransClientKey = import.meta.env.VITE_MIDTRANS_CLIENT_KEY;
-    scriptTag.setAttribute("data-client-key", myMidtransClientKey);
-
-    document.body.appendChild(scriptTag);
-
-    return () => {
-      document.body.removeChild(scriptTag);
-    };
-  }, []);
-
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
   return (
     <>
       <div className="bg-white p-14">
-        <div className="w-[100%] flex justify-end mb-[20px]">
+        <div className="w-[100%] flex justify-between mb-[20px]">
+          <p className="text-2xl font-bold">My Product</p>
           <Button
             onClick={handleOpen}
             onMouseEnter={handleMouseEnter}
@@ -59,12 +41,7 @@ export function ProductPage() {
             <AddProduct />
           </Modal>
         </div>
-        <div className="flex grid grid-cols-3 gap-3">
-          {Array.isArray(products) &&
-            products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-        </div>
+        <ListProduct />
       </div>
     </>
   );

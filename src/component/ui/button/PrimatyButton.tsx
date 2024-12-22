@@ -13,6 +13,7 @@ interface ButtonProps extends ButtonBaseProps {
   fw?: string;
   isLoading?: boolean; // Ubah isPending menjadi boolean
   onClick?: () => void;
+  style?: React.CSSProperties;
 }
 
 export function PrimaryButton(props: ButtonProps) {
@@ -30,6 +31,7 @@ export function PrimaryButton(props: ButtonProps) {
           border: props.border,
           color: props.color || "black",
           fontWeight: props.fw,
+          ...props.style,
         }}
         variant="contained"
       >
