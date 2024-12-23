@@ -56,6 +56,8 @@ export function ProductCard({ product, useButton = false }: ProductCardProps) {
             flexDirection: "column",
             justifyContent: "space-between",
             padding: 8,
+            flex: 1,
+            flexWrap: "wrap",
           }}
         >
           <Typography
@@ -100,20 +102,22 @@ export function ProductCard({ product, useButton = false }: ProductCardProps) {
                 flexDirection: "row",
                 gap: "10px",
                 alignItems: "center",
+                flexWrap: "wrap",
               }}
             >
               <Typography
-                sx={{ color: "black", fontSize: "18px", fontWeight: "bold" }}
+                sx={{ color: "black", fontSize: "14px", fontWeight: "bold" }}
               >
                 {numberToRupiah(product?.priceAfterDiscount as number)}
               </Typography>
               <Typography
-                className="bg-gray-500"
+                className="bg-red-600"
                 sx={{
                   color: "white",
                   fontSize: "12px",
-                  borderRadius: "10px",
-                  padding: "3px",
+                  borderRadius: "2px",
+                  padding: "2px",
+                  fontWeight: "bold",
                 }}
               >
                 {product?.discount}%
@@ -130,7 +134,7 @@ export function ProductCard({ product, useButton = false }: ProductCardProps) {
             </div>
           ) : (
             <Typography
-              sx={{ color: "black", fontSize: "18px", fontWeight: "bold" }}
+              sx={{ color: "black", fontSize: "14px", fontWeight: "bold" }}
             >
               {numberToRupiah(product?.price as number)}
             </Typography>

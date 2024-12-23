@@ -16,7 +16,12 @@ function ListProduct() {
         <div className="bg-white w-[100%] flex flex-col gap-5 p-10">
           <p className="text-2xl font-bold">Recommendation</p>
 
-          <div className="flex grid grid-cols-6 gap-3  ">
+          <div
+            className="flex
+           grid grid-cols-5 
+           gap-2 
+            p-10"
+          >
             {Array.isArray(products) &&
               products.map((product) => (
                 <ProductCard key={product.id} product={product} />

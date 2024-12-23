@@ -1,8 +1,8 @@
 export type ProductDto = {
   id: number;
   photoProduct: string;
-  price: number;
   productName: string;
+  price: number;
   stock: number;
   discount: number;
   priceAfterDiscount: number;
