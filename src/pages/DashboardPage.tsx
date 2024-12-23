@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AddProduct } from "../component/features/product/component/modal/AddProduct";
 import ListProductDashboard from "../component/features/product/component/ListProductDashboard";
 
-export function ProductPage() {
+export function Dashboard() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

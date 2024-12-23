@@ -63,7 +63,7 @@ export function ProductCard({ product, useButton = false }: ProductCardProps) {
             style={{
               fontSize: "14px",
               lineHeight: "18px",
-              height: "36px",
+              // height: "36px",
               width: "100%",
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -76,6 +76,66 @@ export function ProductCard({ product, useButton = false }: ProductCardProps) {
             {product.productName}
           </Typography>
           <Typography
+            gutterBottom
+            style={{
+              fontSize: "12px",
+              lineHeight: "18px",
+              width: "100%",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 2,
+              fontWeight: "bold",
+              color: "gray",
+            }}
+            component="div"
+          >
+            Stock {product.stock}
+          </Typography>
+          {product?.discount > 0 ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "10px",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                sx={{ color: "black", fontSize: "18px", fontWeight: "bold" }}
+              >
+                {numberToRupiah(product?.priceAfterDiscount as number)}
+              </Typography>
+              <Typography
+                className="bg-gray-500"
+                sx={{
+                  color: "white",
+                  fontSize: "12px",
+                  borderRadius: "10px",
+                  padding: "3px",
+                }}
+              >
+                {product?.discount}%
+              </Typography>
+              <Typography
+                sx={{
+                  color: "black",
+                  fontSize: "12px",
+                  textDecoration: "line-through",
+                }}
+              >
+                {numberToRupiah(product?.price as number)}
+              </Typography>
+            </div>
+          ) : (
+            <Typography
+              sx={{ color: "black", fontSize: "30px", fontWeight: "bold" }}
+            >
+              {numberToRupiah(product?.price as number)}
+            </Typography>
+          )}
+          {/* <Typography
             sx={{
               fontSize: "18px",
               fontWeight: "bold",
@@ -84,7 +144,7 @@ export function ProductCard({ product, useButton = false }: ProductCardProps) {
             }}
           >
             {numberToRupiah(product.price)}
-          </Typography>
+          </Typography> */}
         </CardContent>
         {useButton && (
           <CardActions>

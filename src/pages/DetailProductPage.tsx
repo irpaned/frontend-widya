@@ -44,32 +44,36 @@ export function DetailProduct() {
           style={{
             fontSize: "25px",
             width: "100%",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 2,
           }}
           component="div"
         >
           {products?.productName}
         </Typography>
-        <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
-          <Typography
-            gutterBottom
-            style={{
-              fontSize: "18px",
-            }}
-            component="div"
-          >
-            150 Sold
-          </Typography>
-          |
-          <Typography
-            gutterBottom
-            style={{
-              fontSize: "18px",
-            }}
-            component="div"
-          >
-            450 Stars
-          </Typography>
-        </div>
+
+        <Typography
+          gutterBottom
+          style={{
+            fontSize: "18px",
+          }}
+          component="div"
+        >
+          {products?.description}
+        </Typography>
+
+        <Typography
+          gutterBottom
+          style={{
+            fontSize: "18px",
+          }}
+          component="div"
+        >
+          Stock Available {products?.stock}
+        </Typography>
         {products?.discount > 0 ? (
           <div
             style={{

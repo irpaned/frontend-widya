@@ -39,7 +39,6 @@ export const useEditProfile = (id: number) => {
     mutationFn: async (newUser: FormData) => {
       const response = await axiosInstance.patch("/user/" + id, newUser);
       dispatch(SET_USER(response.data));
-      console.log("RESSS", response.data);
       return response;
     },
   });

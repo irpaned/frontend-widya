@@ -17,7 +17,7 @@ type NavBarProps = {
   isAuthPage?: boolean;
 };
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Dashboard", "Logout"];
 
 export function NavBar({ isAuthPage = false }: NavBarProps) {
   const queryClient = useQueryClient();

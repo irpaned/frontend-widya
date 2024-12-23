@@ -32,8 +32,6 @@ export function EditProfile() {
     currentUser.id
   );
 
-  console.log("asddaasd", currentUser.sex);
-
   const [sex, setSex] = useState("");
 
   useEffect(() => {

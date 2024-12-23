@@ -6,7 +6,7 @@ import { NavBar } from "./component/navigation/NavBar";
 import { axiosInstance } from "./libs/axios";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
-import { ProductPage } from "./pages/productPage";
+import { Dashboard } from "./pages/DashboardPage";
 import { SET_USER } from "./redux/slices/auth";
 import { AuthLayout } from "./component/layouts/AuthLayout";
 import ResetPasswordPage from "./pages/auth/ForgotPage";
@@ -20,7 +20,6 @@ function App() {
     queryFn: async () => {
       try {
         const response = await axiosInstance.get("/auth/check");
-        console.log("AAAAAAAA", response);
         dispatch(
           SET_USER({
             ...response.data,
@@ -49,7 +48,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="product/:id" element={<DetailProduct />} />
           <Route element={<PrivateRoute />}>
-            <Route path="dashboard" element={<ProductPage />} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<ProfilePage />} />
           </Route>
         </Route>

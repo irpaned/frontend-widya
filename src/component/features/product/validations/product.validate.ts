@@ -5,6 +5,6 @@ export const productSchema = z.object({
   photoProduct: z.any(),
   price: z.string().min(1),
   discount: z.string().min(0).max(100),
-  description: z.string().min(1).max(500),
+  description: z.string().min(1).max(300),
   stock: z.string().min(1),
 });
