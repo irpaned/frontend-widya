@@ -29,8 +29,11 @@ export const useEditProduct = (id: number) => {
   const onSubmit: SubmitHandler<ProductDto> = async (data) => {
     try {
       const formData = new FormData();
-      formData.append("price", data.price);
       formData.append("productName", data.productName);
+      formData.append("description", data.description);
+      formData.append("price", data.price.toString());
+      formData.append("stock", data.stock.toString());
+      formData.append("discount", data.discount.toString());
       if (data.photoProduct) {
         formData.append("photoProduct", data.photoProduct[0]);
       }

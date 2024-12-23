@@ -15,15 +15,11 @@ import logo from "../../assets/image/logo.png";
 
 type NavBarProps = {
   isAuthPage?: boolean;
-  isMainPage?: boolean;
 };
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-export function NavBar({
-  isAuthPage = false,
-  isMainPage = false,
-}: NavBarProps) {
+export function NavBar({ isAuthPage = false }: NavBarProps) {
   const queryClient = useQueryClient();
   const user = useSelector((state: RootState) => state.auth.user);
 
@@ -36,7 +32,11 @@ export function NavBar({
   };
 
   const handleProfile = () => {
-    navigate("/");
+    navigate("/profile");
+  };
+
+  const handleDashboard = () => {
+    navigate("/dashboard");
   };
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
@@ -53,34 +53,11 @@ export function NavBar({
 
   return (
     <header className="px-4 lg:px-40 h-[70px] flex justify-between items-center bg-white">
-      <nav
-        className=" flex items-center "
-        style={{
-          gap: isMainPage ? "10px" : 0,
-        }}
-      >
+      <Link to="/" className=" flex items-center ">
         <img className="w-[100px] mb-2" src={logo} alt="logo" />
-        {user.isLogin ? (
-          <>
-            <Link
-              to="/"
-              className="text-m font-bold text-black hover:underline underline-offset-4"
-            >
-              PROFILE
-            </Link>
-            <Link
-              to="product"
-              className="text-m text-black font-bold hover:underline underline-offset-4"
-            >
-              PRODUCT
-            </Link>
-          </>
-        ) : (
-          <>
-            <p className="text-xl font-bold text-black">Netify</p>
-          </>
-        )}
-      </nav>
+
+        <p className="text-xl font-bold text-black">Netify</p>
+      </Link>
       <div>
         {user.isLogin ? (
           <div className="flex justify-between">
@@ -123,6 +100,8 @@ export function NavBar({
                       handleLogout();
                     } else if (setting === "Profile") {
                       handleProfile();
+                    } else if (setting === "Dashboard") {
+                      handleDashboard();
                     } else {
                       handleCloseUserMenu();
                     }

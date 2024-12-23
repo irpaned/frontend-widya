@@ -3,18 +3,6 @@ import Box from "@mui/material/Box";
 import { PrimaryButton } from "../../../../ui/button/PrimatyButton";
 import { useAddProduct } from "../../hooks/use-add-product";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 500,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
-  borderRadius: 5,
-};
-
 export function AddProduct() {
   const { register, errors, handleSubmit, onSubmit } = useAddProduct();
 
@@ -30,7 +18,7 @@ export function AddProduct() {
         >
           Add Product
         </Typography>
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             {...register("productName")}
             className="w-full"
@@ -38,6 +26,30 @@ export function AddProduct() {
             label="Product Name"
           />
           <Typography color={"red"}>{errors.productName?.message}</Typography>
+
+          <TextField
+            {...register("description")}
+            className="w-full"
+            type="text"
+            label="Description"
+          />
+          <Typography color={"red"}>{errors.description?.message}</Typography>
+
+          <TextField
+            {...register("discount")}
+            className="w-full"
+            type="text"
+            label="Discount"
+          />
+          <Typography color={"red"}>{errors.discount?.message}</Typography>
+
+          <TextField
+            {...register("stock")}
+            className="w-full"
+            type="text"
+            label="Stock"
+          />
+          <Typography color={"red"}>{errors.stock?.message}</Typography>
 
           <TextField
             {...register("price")}
@@ -60,6 +72,7 @@ export function AddProduct() {
             buttonType="submit"
             color="white"
             fw="bold"
+            bg="black"
             fs="15px"
             className="w-full"
           />
@@ -68,3 +81,15 @@ export function AddProduct() {
     </div>
   );
 }
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: 5,
+};

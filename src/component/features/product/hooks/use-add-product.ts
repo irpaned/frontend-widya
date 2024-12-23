@@ -20,14 +20,17 @@ export const useAddProduct = () => {
   });
 
   const { mutateAsync } = useMutation<ProductEntity, AxiosError, ProductDto>({
-    mutationFn: async (newUser) => {
+    mutationFn: async (product) => {
       const formData = new FormData();
-      formData.append("price", `${newUser.price}`);
+      formData.append("price", `${product.price}`);
+      formData.append("description", product.description);
+      formData.append("stock", `${product.stock}`);
+      formData.append("discount", `${product.discount}`);
 
-      formData.append("productName", newUser.productName);
+      formData.append("productName", product.productName);
 
-      if (newUser.photoProduct) {
-        formData.append("photoProduct", newUser.photoProduct[0]);
+      if (product.photoProduct) {
+        formData.append("photoProduct", product.photoProduct[0]);
       }
       return await axiosInstance.post("/product", formData, {
         headers: {

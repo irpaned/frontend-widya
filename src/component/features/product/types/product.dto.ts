@@ -1,11 +1,12 @@
-// import { z } from "zod";
-// import { createTransactionSchema } from "../validations/product.validate";
-
 export type ProductDto = {
   id: number;
-  productName: string;
   photoProduct: string;
-  price: string;
+  price: number;
+  productName: string;
+  stock: number;
+  discount: number;
+  priceAfterDiscount: number;
+  description: string;
 };
 
 export type TransactionResponseDto = {
@@ -13,9 +14,6 @@ export type TransactionResponseDto = {
   token: string;
 };
 
-// export type TransactionDto = z.infer<typeof createTransactionSchema>;
-
 export type TransactionDto = {
   productId: number;
-  // userId: number;
 };

@@ -37,9 +37,7 @@ export function LoginForm() {
         <TextField
           {...register("email")}
           className="w-full"
-          id="outlined-basic"
           label="Email"
-          variant="outlined"
           type="email"
         />
         <Typography color={"red"}>{errors.email?.message}</Typography>
@@ -57,7 +55,7 @@ export function LoginForm() {
 
         <Link
           to="/auth/forgot-password"
-          className="text-blue-500 flex justify-end"
+          className="text-gray-400 flex justify-end mb-2"
         >
           Forgot password?
         </Link>
@@ -67,6 +65,7 @@ export function LoginForm() {
           color="white"
           fw="bold"
           fs="15px"
+          bg="black"
           buttonType="submit"
           className="w-full"
           isLoading={isPending}

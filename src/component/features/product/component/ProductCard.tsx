@@ -61,7 +61,7 @@ export function ProductCard({ product, useButton = false }: ProductCardProps) {
           <Typography
             gutterBottom
             style={{
-              fontSize: "15px",
+              fontSize: "14px",
               lineHeight: "18px",
               height: "36px",
               width: "100%",

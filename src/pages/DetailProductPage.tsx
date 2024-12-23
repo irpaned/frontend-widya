@@ -70,11 +70,50 @@ export function DetailProduct() {
             450 Stars
           </Typography>
         </div>
-        <Typography
-          sx={{ color: "black", fontSize: "30px", fontWeight: "bold" }}
-        >
-          {numberToRupiah(products?.price as number)}
-        </Typography>
+        {products?.discount > 0 ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "10px",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              sx={{ color: "black", fontSize: "30px", fontWeight: "bold" }}
+            >
+              {numberToRupiah(products?.priceAfterDiscount as number)}
+            </Typography>
+            <Typography style={{ fontSize: "25px" }}>|</Typography>
+            <Typography
+              className="bg-gray-500"
+              sx={{
+                color: "white",
+                fontSize: "20px",
+                borderRadius: "10px",
+                padding: "3px",
+              }}
+            >
+              {products?.discount}%
+            </Typography>
+            <Typography
+              sx={{
+                color: "black",
+                fontSize: "20px",
+                textDecoration: "line-through",
+              }}
+            >
+              {numberToRupiah(products?.price as number)}
+            </Typography>
+          </div>
+        ) : (
+          <Typography
+            sx={{ color: "black", fontSize: "30px", fontWeight: "bold" }}
+          >
+            {numberToRupiah(products?.price as number)}
+          </Typography>
+        )}
+
         <Counter />
         <div
           style={{

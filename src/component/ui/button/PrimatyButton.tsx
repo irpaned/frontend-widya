@@ -11,7 +11,7 @@ interface ButtonProps extends ButtonBaseProps {
   border?: string;
   color?: string;
   fw?: string;
-  isLoading?: boolean; // Ubah isPending menjadi boolean
+  isLoading?: boolean;
   onClick?: () => void;
   style?: React.CSSProperties;
 }
@@ -22,7 +22,7 @@ export function PrimaryButton(props: ButtonProps) {
       <Button
         type={props.buttonType}
         onClick={props.onClick}
-        disabled={props.isLoading} // Disable button jika sedang loading
+        disabled={props.isLoading}
         style={{
           backgroundColor: props.bg || "#1B5184",
           padding: `${props.py || "10px"} ${props.px || "40px"}`,

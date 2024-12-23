@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export default function LoginPage() {
   return (
-    // <div className="flex min-h-screen items-center  justify-center bg-black">
     <Card className="mx-auto w-full max-w-md p-6 mb-20  sm:p-8">
       <div className="space-y-4 ">
         <div className="space-y-2">
@@ -23,12 +22,11 @@ export default function LoginPage() {
 
         <Typography>
           Don't have an account?{" "}
-          <Link to="/auth/register" className="text-blue-500">
+          <Link to="/auth/register" className="text-gray-400">
             Register
           </Link>
         </Typography>
       </div>
     </Card>
-    // </div>
   );
 }

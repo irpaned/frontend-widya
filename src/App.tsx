@@ -7,12 +7,12 @@ import { axiosInstance } from "./libs/axios";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import { ProductPage } from "./pages/productPage";
-import { ProfilePage } from "./pages/profilePage";
 import { SET_USER } from "./redux/slices/auth";
 import { AuthLayout } from "./component/layouts/AuthLayout";
 import ResetPasswordPage from "./pages/auth/ForgotPage";
 import HomePage from "./pages/HomePage";
-import { DetailProduct } from "./pages/DetailProduct";
+import { DetailProduct } from "./pages/DetailProductPage";
+import { ProfilePage } from "./pages/ProfilePage";
 function App() {
   const dispatch = useDispatch();
   const { data: authUser } = useQuery({
@@ -49,8 +49,8 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="product/:id" element={<DetailProduct />} />
           <Route element={<PrivateRoute />}>
+            <Route path="dashboard" element={<ProductPage />} />
             <Route path="profile" element={<ProfilePage />} />
-            <Route path="product" element={<ProductPage />} />
           </Route>
         </Route>
         <Route path="auth/login" element={<AuthLayout />}>

@@ -4,18 +4,6 @@ import { PrimaryButton } from "../../../../ui/button/PrimatyButton";
 import { useEditProduct } from "../../hooks/use-edit-product";
 import { ProductEntity } from "../../entities/ProductEntity";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 500,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
-  borderRadius: 5,
-};
-
 interface ProductCardProps {
   product: ProductEntity;
 }
@@ -48,6 +36,33 @@ export function EditProduct({ product }: ProductCardProps) {
           <Typography color={"red"}>{errors.productName?.message}</Typography>
 
           <TextField
+            {...register("description")}
+            defaultValue={product.description}
+            className="w-full"
+            type="text"
+            label="Description"
+          />
+          <Typography color={"red"}>{errors.description?.message}</Typography>
+
+          <TextField
+            {...register("discount")}
+            defaultValue={product.discount}
+            className="w-full"
+            type="text"
+            label="Discount"
+          />
+          <Typography color={"red"}>{errors.discount?.message}</Typography>
+
+          <TextField
+            {...register("stock")}
+            defaultValue={product.stock}
+            className="w-full"
+            type="text"
+            label="Stock"
+          />
+          <Typography color={"red"}>{errors.stock?.message}</Typography>
+
+          <TextField
             {...register("price")}
             defaultValue={product.price}
             className="w-full"
@@ -77,3 +92,15 @@ export function EditProduct({ product }: ProductCardProps) {
     </div>
   );
 }
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: 5,
+};

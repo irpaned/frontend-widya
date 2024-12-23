@@ -12,7 +12,7 @@ import { PrimaryButton } from "../../../../ui/button/PrimatyButton";
 import { useEditProfile } from "../../hooks/use-edit-profile";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../redux/store";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const style = {
   position: "absolute",
@@ -32,9 +32,17 @@ export function EditProfile() {
     currentUser.id
   );
 
-  const [sex, setSex] = React.useState("");
+  console.log("asddaasd", currentUser.sex);
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const [sex, setSex] = useState("");
+
+  useEffect(() => {
+    if (currentUser && currentUser.sex) {
+      setSex(currentUser.sex);
+    }
+  }, [currentUser]);
+
+  const handleChange = (event: SelectChangeEvent<string>) => {
     setSex(event.target.value);
   };
   return (
@@ -66,15 +74,10 @@ export function EditProfile() {
                 {...register("sex")}
                 labelId="demo-simple-select-autowidth-label"
                 id="demo-simple-select-autowidth"
-                defaultValue={currentUser.sex}
                 value={sex}
                 onChange={handleChange}
-                autoWidth
                 label="Sex"
               >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
                 <MenuItem value={"Male"}>Male</MenuItem>
                 <MenuItem value={"Female"}>Female</MenuItem>
               </Select>

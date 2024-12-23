@@ -3,4 +3,8 @@ export interface ProductEntity {
   photoProduct: string;
   price: number;
   productName: string;
+  stock: number;
+  discount: number;
+  priceAfterDiscount: number;
+  description: string;
 }

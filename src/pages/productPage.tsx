@@ -1,7 +1,7 @@
 import { Button, Modal } from "@mui/material";
 import { useState } from "react";
 import { AddProduct } from "../component/features/product/component/modal/AddProduct";
-import ListProduct from "../component/features/product/component/ListProduct";
+import ListProductDashboard from "../component/features/product/component/ListProductDashboard";
 
 export function ProductPage() {
   const [open, setOpen] = useState(false);
@@ -18,7 +18,7 @@ export function ProductPage() {
   };
   return (
     <>
-      <div className="bg-white p-14">
+      <div className="bg-white p-14 w-[100%]">
         <div className="w-[100%] flex justify-between mb-[20px]">
           <p className="text-2xl font-bold">My Product</p>
           <Button
@@ -26,9 +26,9 @@ export function ProductPage() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             style={{
-              backgroundColor: isHovered ? "white" : "#1B5EA0",
-              color: isHovered ? "#1B5EA0" : "white",
-              border: isHovered ? "2px solid #1B5EA0" : "2px solid white",
+              backgroundColor: isHovered ? "white" : "black",
+              color: isHovered ? "black" : "white",
+              border: isHovered ? "2px solid black" : "2px solid black",
               padding: "3px 15px 3px 15px",
               fontWeight: "bold",
               transition: "all 0.3s ease",
@@ -41,7 +41,7 @@ export function ProductPage() {
             <AddProduct />
           </Modal>
         </div>
-        <ListProduct />
+        <ListProductDashboard />
       </div>
     </>
   );

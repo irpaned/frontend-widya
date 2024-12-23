@@ -4,7 +4,6 @@ import { Card } from "@mui/material";
 
 export default function RegisterPage() {
   return (
-    // <div className="flex min-h-screen items-center justify-center bg-background">
     <Card className="mx-auto w-full max-w-md p-6 mb-20  sm:p-8">
       <div className="space-y-4">
         <div className="space-y-2">
@@ -21,6 +20,5 @@ export default function RegisterPage() {
         <RegisterForm />
       </div>
     </Card>
-    // </div>
   );
 }

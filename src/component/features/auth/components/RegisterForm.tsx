@@ -77,6 +77,7 @@ export default function RegisterForm() {
           title="Submit"
           color="white"
           fw="bold"
+          bg="black"
           fs="15px"
           className="w-full"
         />
@@ -85,7 +86,7 @@ export default function RegisterForm() {
           Already have an account?{" "}
           <Link
             to="/auth/login"
-            className="text-blue-500 hover:text-primary/80"
+            className="text-gray-400 hover:text-primary/80"
           >
             Sign in
           </Link>
