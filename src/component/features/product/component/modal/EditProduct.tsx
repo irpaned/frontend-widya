@@ -83,6 +83,7 @@ export function EditProduct({ product }: ProductCardProps) {
             title="Submit"
             buttonType="submit"
             color="white"
+            bg="black"
             fw="bold"
             fs="15px"
             className="w-full"

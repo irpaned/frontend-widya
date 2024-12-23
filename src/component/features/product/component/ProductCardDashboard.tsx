@@ -112,7 +112,7 @@ export function ProductCardDashboard({ product }: ProductCardProps) {
           }}
           component="div"
         >
-          Stock {product.stock}
+          Stock : {product.stock}
         </Typography>
         {product?.discount > 0 ? (
           <div
@@ -133,7 +133,7 @@ export function ProductCardDashboard({ product }: ProductCardProps) {
               className="bg-gray-500"
               sx={{
                 color: "white",
-                fontSize: "20px",
+                fontSize: "15px",
                 borderRadius: "10px",
                 padding: "3px",
               }}
@@ -143,7 +143,7 @@ export function ProductCardDashboard({ product }: ProductCardProps) {
             <Typography
               sx={{
                 color: "black",
-                fontSize: "20px",
+                fontSize: "18px",
                 textDecoration: "line-through",
               }}
             >

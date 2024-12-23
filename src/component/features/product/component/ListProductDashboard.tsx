@@ -1,15 +1,15 @@
-import { useProduct } from "../hooks/useProduct";
+import { useMyProduct } from "../hooks/useMyProduct";
 import { ProductCardDashboard } from "./ProductCardDashboard";
 
 function ListProductDashboard() {
-  const { products } = useProduct();
+  const { products } = useMyProduct();
 
   const isEmpty = Array.isArray(products) && products.length === 0;
 
   return (
     <>
       {isEmpty ? (
-        <div className="w-[500px] flex justify-center items-center bg-white w-[100%]  mt-10 ">
+        <div className="w-[500px] flex justify-center items-center bg-white w-[100%]  mt-10  ">
           <h1 className="text-2xl">No product yet</h1>
         </div>
       ) : (

@@ -18,7 +18,7 @@ export function Dashboard() {
   };
   return (
     <>
-      <div className="bg-white p-14 w-[100%]">
+      <div className="bg-white p-14 w-[100%] flex flex-col items-center">
         <div className="w-[100%] flex justify-between mb-[20px]">
           <p className="text-2xl font-bold">My Product</p>
           <Button
