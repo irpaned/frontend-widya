@@ -32,11 +32,14 @@ export function DetailProduct() {
         image={products?.photoProduct}
       />
       <CardContent
+        className="bg-gray-100"
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
           width: "50%",
+
+          borderRadius: "10px",
         }}
       >
         <Typography
@@ -74,7 +77,7 @@ export function DetailProduct() {
         >
           Stock Available {products?.stock}
         </Typography>
-        {products?.discount > 0 ? (
+        {products!.discount > 0 ? (
           <div
             style={{
               display: "flex",
@@ -118,7 +121,7 @@ export function DetailProduct() {
           </Typography>
         )}
 
-        <Counter />
+        <Counter backgroundColor="background" />
         <div
           style={{
             display: "flex",

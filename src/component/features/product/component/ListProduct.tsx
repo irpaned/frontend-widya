@@ -13,11 +13,15 @@ function ListProduct() {
           <h1 className="text-2xl">No product yet</h1>
         </div>
       ) : (
-        <div className="flex grid grid-cols-6 gap-3 bg-white w-[100%] p-10">
-          {Array.isArray(products) &&
-            products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+        <div className="bg-white w-[100%] flex flex-col gap-5 p-10">
+          <p className="text-2xl font-bold">Recommendation</p>
+
+          <div className="flex grid grid-cols-6 gap-3  ">
+            {Array.isArray(products) &&
+              products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+          </div>
         </div>
       )}
     </>

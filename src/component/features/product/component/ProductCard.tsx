@@ -130,21 +130,11 @@ export function ProductCard({ product, useButton = false }: ProductCardProps) {
             </div>
           ) : (
             <Typography
-              sx={{ color: "black", fontSize: "30px", fontWeight: "bold" }}
+              sx={{ color: "black", fontSize: "18px", fontWeight: "bold" }}
             >
               {numberToRupiah(product?.price as number)}
             </Typography>
           )}
-          {/* <Typography
-            sx={{
-              fontSize: "18px",
-              fontWeight: "bold",
-              marginTop: "10px",
-              color: "black",
-            }}
-          >
-            {numberToRupiah(product.price)}
-          </Typography> */}
         </CardContent>
         {useButton && (
           <CardActions>
