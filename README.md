@@ -1,4 +1,4 @@
-# React + TypeScript + Vite (Frontend)
+# React + TypeScript + Vite 
 
 ### **Setup Frontend:**
 
